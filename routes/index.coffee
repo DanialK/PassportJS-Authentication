@@ -1,19 +1,18 @@
 passport = require("passport")
-hash = require("../lib/pass").hash
-Users = require("../model/user")
+
+User = require("../model/user")
 ObjectID = require("../node_modules/mongoose/node_modules/mongodb").ObjectID
+
 module.exports = (app) ->
-  
-  #
-  #    * Helpers
-  #    
-  authenticatedOrNot = (req, res, next) ->
+  # Helpers
+  isAuthenticated = (req, res, next) ->
     if req.isAuthenticated()
       next()
     else
       res.redirect "/login"
+
   userExist = (req, res, next) ->
-    Users.count
+    User.count
       username: req.body.username
     , (err, count) ->
       if count is 0
@@ -21,10 +20,7 @@ module.exports = (app) ->
       else
         res.redirect "/singup"
 
-  
-  #
-  #    * Routes
-  #    
+  # Routes
   app.get "/", (req, res) ->
     if req.isAuthenticated()
       res.render "loggedin",
@@ -33,7 +29,6 @@ module.exports = (app) ->
     else
       res.render "loggedin",
         user: null
-
 
   app.get "/login", (req, res) ->
     res.render "login"
@@ -46,22 +41,11 @@ module.exports = (app) ->
     res.render "signup"
 
   app.post "/signup", userExist, (req, res, next) ->
-    user = new Users()
-    hash req.body.password, (err, salt, hash) ->
-      throw err  if err
-      user = new Users(
-        username: req.body.username
-        salt: salt
-        hash: hash
-        _id: new ObjectID
-      ).save((err, newUser) ->
-        throw err  if err
-        req.login newUser, (err) ->
-          return next(err)  if err
-          res.redirect "/"
-
-      )
-
+    User.signup req.body.email, req.body.password, (err, user) ->
+      throw err if err
+      req.login user, (err) ->
+        return next(err)  if err
+        res.redirect "/"
 
   app.get "/auth/facebook", passport.authenticate("facebook",
     scope: "email"
@@ -72,11 +56,9 @@ module.exports = (app) ->
     res.render "loggedin",
       user: req.user
 
-
-  app.get "/profile", authenticatedOrNot, (req, res) ->
+  app.get "/profile", isAuthenticated, (req, res) ->
     res.render "profile",
       user: req.user
-
 
   app.get "/logout", (req, res) ->
     req.logout()

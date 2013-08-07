@@ -25,5 +25,8 @@
     , "passport-facebook": "v0.1.5"
     , "passport-twitter": "v0.1.5"
     , "connect-flash": "v0.1.1"
+  },
+  "devDependencies": {
+    "should": "1.2.2"
   }
 }

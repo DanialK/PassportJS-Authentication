@@ -1,4 +1,3 @@
-
 # check out https://github.com/visionmedia/node-pwd
 
 ###
@@ -25,7 +24,7 @@ generate a salt for `pass` and invoke `fn(err, salt, hash)`.
 @param {Function} callback
 @api public
 ###
-exports.hash = (pwd, salt, fn) ->
+module.exports = (pwd, salt, fn) ->
   if 3 is arguments.length
     crypto.pbkdf2 pwd, salt, iterations, len, fn
   else
@@ -36,4 +35,3 @@ exports.hash = (pwd, salt, fn) ->
       crypto.pbkdf2 pwd, salt, iterations, len, (err, hash) ->
         return fn(err)  if err
         fn null, salt, hash
-

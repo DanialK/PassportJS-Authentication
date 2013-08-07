@@ -1,40 +1,54 @@
+require './bootstrap'
+
 ###
 Module dependencies.
 ###
-express = require("express")
-http = require("http")
-path = require("path")
-mongoose = require("mongoose")
-passport = require("passport")
-flash = require("connect-flash")
+express  = require 'express'
+config   = require 'config'
+http     = require 'http'
+path     = require 'path'
+i18n     = require "i18n"
+_        = require('underscore')._
+backbone = require 'backbone'
+$        = require 'jquery'
+passport = require 'passport'
+flash    = require 'connect-flash'
+
 app = express()
 
-#
-#Database and Models
-#
-mongoose.connect "mongodb://localhost/passportjs-authentication"
-Users = require("./model/user")
-FbUsers = require("./model/fbuser")
-require "./passport-bootstrap"
+require './passport-bootstrap'
+
 app.configure ->
   app.set "port", process.env.PORT or 3000
   app.set "views", __dirname + "/views"
   app.set "view engine", "jade"
+  app.locals
+    __i: i18n.__
+    __n: i18n.__n
+    menu: config.menu
   app.use express.favicon()
   app.use express.logger("dev")
   app.use express.cookieParser()
   app.use express.bodyParser()
-  app.use express.session(secret: "keyboard cat")
+  app.use express.session(secret: "alimentation")
   app.use passport.initialize()
   app.use passport.session()
   app.use express.methodOverride()
   app.use flash()
   app.use app.router
   app.use express.static(path.join(__dirname, "public"))
+  app.use require("less-middleware")(src: __dirname + "/public")
+
+i18n.setLocale "fr"
 
 app.configure "development", ->
-  app.use express.errorHandler()
+  app.use express.errorHandler(
+    dumpExceptions: true
+    showStack: true
+  )
 
+app.configure "production", ->
+  app.use express.errorHandler()
 
 #
 #* Error Handling
@@ -58,5 +72,9 @@ app.use (err, req, res, next) ->
 
 
 require("./routes") app
-http.createServer(app).listen app.get("port"), ->
-  console.log "Express server listening on port " + app.get("port")
+
+if module.parent is null
+  http.createServer(app).listen app.get("port"), ->
+    console.log "Express server listening on port " + app.get("port")
+else
+  module.exports = app
