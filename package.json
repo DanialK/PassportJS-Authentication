@@ -6,12 +6,27 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
-    "express": "3.1.0",
-    "jade": "*",
-    "mongodb": "*",
-    "nodemon": "*",
-    "passport": "*",
-    "passport-local": "*",
-    "passport-facebook": "*"
+    "nodemon": "*"
+    , "express": "3.2.6"
+    , "jade": "= 0.31.2"
+    , "i18n": "= 0.3.7"
+    , "mongoose": "3.6.13"
+    , "underscore": "1.4.4"
+    , "less-middleware": "0.1.9"
+    , "jquery": "1.8.3"
+    , "async": "0.2.5"
+    , "coffee-script": "1.5.0"
+    , "config": "0.4.25"
+    , "pow-mongoose-fixtures": "0.3.0"
+    , "moment": "2.1.0"
+    , "backbone": "0.9.10"
+    , "passport": "v0.1.17"
+    , "passport-local": "v0.1.5"
+    , "passport-facebook": "v0.1.5"
+    , "passport-twitter": "v0.1.5"
+    , "connect-flash": "v0.1.1"
+  },
+  "devDependencies": {
+    "should": "1.2.2"
   }
 }
