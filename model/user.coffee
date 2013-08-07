@@ -1,9 +1,6 @@
 mongoose = require 'mongoose'
-_        = require('underscore')._
-$        = require('jquery')
 
 Schema   = mongoose.Schema
-ObjectId = Schema.ObjectId
 
 hash = require "../lib/hash"
 

@@ -1,7 +1,6 @@
 passport = require("passport")
 
 User = require("../model/user")
-ObjectID = require("../node_modules/mongoose/node_modules/mongodb").ObjectID
 
 module.exports = (app) ->
   # Helpers
