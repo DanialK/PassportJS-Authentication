@@ -14,7 +14,7 @@ var app = express();
 /*
 Database and Models
 */
-mongoose.connect("mongodb://localhost/myapp");
+mongoose.connect("mongodb://localhost/passportjs-authentication");
 
 var Users = require('./model/user');
 var FbUsers = require('./model/fbuser');
