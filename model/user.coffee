@@ -8,7 +8,6 @@ ObjectId = Schema.ObjectId
 hash = require "../lib/hash"
 
 UserSchema = new Schema(
-  id:         ObjectId
   firstName:  String
   lastName:   String
   email:      String
