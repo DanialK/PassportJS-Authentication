@@ -1,11 +1,19 @@
-form(action='/login', method='post')
-    div
-        label Email:
-        input(type='text', name='email')
-      div
-        label Password:
-        input(type='password', name='password')
-      div
-        input(type='submit', value='Log In')
+extends layout
 
-a(href="/auth/facebook") Log In With Facebook
+block content
+    section
+        form.form-horizontal(method="POST", action="/login")
+            fieldset
+                legend Log In
+                .control-group
+                    label.control-label(for='email') Email
+                    .controls
+                        input#email(type='text', name='email', placeholder="Email")
+                .control-group
+                    label.control-label(for='password') Password
+                    .controls
+                        input#password(type='password', name='password', placeholder="Password")
+                .control-group
+                    input.btn(type="submit", value="Log In")
+                .control-group
+                    a.btn.btn-primary(href="/auth/facebook") Log In With Facebook

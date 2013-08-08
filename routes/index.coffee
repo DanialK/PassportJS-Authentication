@@ -22,11 +22,11 @@ module.exports = (app) ->
   # Routes
   app.get "/", (req, res) ->
     if req.isAuthenticated()
-      res.render "loggedin",
+      res.render "home",
         user: req.user
 
     else
-      res.render "loggedin",
+      res.render "home",
         user: null
 
   app.get "/login", (req, res) ->
@@ -52,7 +52,7 @@ module.exports = (app) ->
   app.get "/auth/facebook/callback", passport.authenticate("facebook",
     failureRedirect: "/login"
   ), (req, res) ->
-    res.render "loggedin",
+    res.render "profile",
       user: req.user
 
   app.get "/profile", isAuthenticated, (req, res) ->

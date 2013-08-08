@@ -1,0 +1,10 @@
+{
+  "name": "super-site",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "jquery": "1.9.1",
+    "underscore": "1.5.1"
+  }
+}
