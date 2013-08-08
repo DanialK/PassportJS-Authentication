@@ -1,6 +1,7 @@
 passport = require("passport")
 
 User = require("../model/user")
+mailer = require("../lib/mailer")
 
 module.exports = (app) ->
   # Helpers
@@ -42,9 +43,10 @@ module.exports = (app) ->
   app.post "/signup", userExist, (req, res, next) ->
     User.signup req.body.email, req.body.password, (err, user) ->
       throw err if err
+      mailer.sendSinupConfirmation(user)
       req.login user, (err) ->
         return next(err)  if err
-        res.redirect "/"
+        res.redirect "/profile"
 
   app.get "/auth/facebook", passport.authenticate("facebook",
     scope: "email"
