@@ -8,9 +8,6 @@ config   = require 'config'
 http     = require 'http'
 path     = require 'path'
 i18n     = require "i18n"
-_        = require('underscore')._
-backbone = require 'backbone'
-$        = require 'jquery'
 passport = require 'passport'
 flash    = require 'connect-flash'
 
