@@ -5,7 +5,7 @@ TwitterStrategy = require("passport-twitter").Strategy
 
 User = require("./model/user")
 
-passport.use new LocalStrategy((email, password, done) ->
+passport.use new LocalStrategy( { usernameField: 'email', passwordField: 'password' }, (email, password, done) ->
   User.isValidUserPassword email, password, done
 )
 
