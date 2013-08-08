@@ -14,5 +14,5 @@ npm install
 
 launch unit tests:
 ```
-NODE_ENV=test mochac --reporter spec --recursive test
+NODE_ENV=test mocha --compilers coffee:coffee-script --reporter spec --recursive test
 ```
