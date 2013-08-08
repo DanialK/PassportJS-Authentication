@@ -6,8 +6,7 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
-    "nodemon": "*"
-    , "express": "3.2.6"
+    "express": "3.2.6"
     , "jade": "= 0.31.2"
     , "i18n": "= 0.3.7"
     , "mongoose": "3.6.13"
@@ -23,6 +22,8 @@
     , "passport-facebook": "v0.1.5"
     , "passport-twitter": "v0.1.5"
     , "connect-flash": "v0.1.1"
+    , "email-templates": "*"
+    , "nodemailer": "v0.5.2"
   },
   "devDependencies": {
     "should": "1.2.2"
