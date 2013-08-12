@@ -2,9 +2,9 @@ extends layout
 
 block content
     section
-        form.form-horizontal(id="singup", method="POST", action="/signup")
+        form.form-horizontal(method="POST", action="/login")
             fieldset
-                legend Inscription
+                legend Log In
                 .control-group
                     label.control-label(for='email') Email
                     .controls
@@ -14,4 +14,6 @@ block content
                     .controls
                         input#password(type='password', name='password', placeholder="Password")
                 .control-group
-                    input.btn(type="submit", value="Sing UP")
+                    input.btn(type="submit", value="Log In")
+                .control-group
+                    a.btn.btn-primary(href="/auth/facebook") Log In With Facebook

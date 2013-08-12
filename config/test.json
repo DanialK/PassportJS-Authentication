@@ -1,0 +1,6 @@
+{
+  "Mongo": {
+    "dbUris": ["mongodb://127.0.0.1:27017/passportjs-authentication-test"],
+    "options": {}
+  }
+}

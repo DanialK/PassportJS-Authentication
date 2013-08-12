@@ -1,0 +1,19 @@
+doctype 5
+html
+    head
+        title= title
+        block links
+            link(rel='stylesheet', href='/twitter-bootstrap/docs/assets/css/bootstrap.css')
+            link(rel='stylesheet', href='/twitter-bootstrap/docs/assets/css/bootstrap-responsive.css')
+            link(rel='stylesheet', href='/twitter-bootstrap/docs/assets/css/docs.css')
+    body(data-spy="scroll", data-target=".subnav", data-offset="50", data-twttr-rendered="true")
+        div.navbar.navbar-fixed-top
+            div.navbar-inner
+                div.container
+                    include navbar
+        div.container
+            block content
+        script(src='/javascripts/libs/jquery/jquery.min.js')
+        script(src='/javascripts/libs/underscore/underscore-min.js')
+        script(src='/twitter-bootstrap/docs/assets/js/bootstrap.min.js')
+        block scripts

@@ -1,0 +1,30 @@
+{
+  "Mongo": {
+    "dbUris": ["mongodb://127.0.0.1:27017/passportjs-authentication"],
+    "options": {}
+  },
+  "menu": {
+    "submenufields": {
+      "label": "Sub Menu Fields",
+      "child": {
+        "subelement1": {
+          "url": "/subelement1/url",
+          "label": "Sub element 1"
+        },
+        "subelement2": {
+          "url": "/subelement2/url",
+          "label": "Sub element 1"
+        }
+      }
+    },
+    "One Menu Field": {
+      "url": "/element/url",
+      "label": "Element"
+    }
+  },
+  "mailer": {
+    "sender": {
+      "no-reply": "no-reply@super-site.com"
+    }
+  }
+}
