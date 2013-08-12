@@ -13,7 +13,6 @@
     , "underscore": "1.4.4"
     , "less-middleware": "0.1.9"
     , "async": "0.2.5"
-    , "coffee-script": "1.5.0"
     , "config": "0.4.25"
     , "pow-mongoose-fixtures": "0.3.0"
     , "moment": "2.1.0"
