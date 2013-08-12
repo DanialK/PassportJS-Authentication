@@ -1,9 +1,7 @@
 var Schema, User, UserSchema, hash, mongoose;
 
 mongoose = require('mongoose');
-
 Schema = mongoose.Schema;
-
 hash = require("../lib/hash");
 
 UserSchema = new Schema({

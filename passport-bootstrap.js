@@ -1,13 +1,9 @@
 var FacebookStrategy, LocalStrategy, TwitterStrategy, User, passport;
 
 passport = require("passport");
-
 LocalStrategy = require("passport-local").Strategy;
-
 FacebookStrategy = require("passport-facebook").Strategy;
-
 TwitterStrategy = require("passport-twitter").Strategy;
-
 User = require("./model/user");
 
 passport.use(new LocalStrategy({

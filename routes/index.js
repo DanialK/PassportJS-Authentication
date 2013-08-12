@@ -1,9 +1,7 @@
 var User, mailer, passport;
 
 passport = require("passport");
-
 User = require("../model/user");
-
 mailer = require("../lib/mailer");
 
 module.exports = function(app) {

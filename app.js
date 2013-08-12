@@ -6,21 +6,13 @@ require('./bootstrap');
 Module dependencies.
 */
 
-
 express = require('express');
-
 config = require('config');
-
 http = require('http');
-
 path = require('path');
-
 i18n = require("i18n");
-
 passport = require('passport');
-
 flash = require('connect-flash');
-
 app = express();
 
 require('./passport-bootstrap');
