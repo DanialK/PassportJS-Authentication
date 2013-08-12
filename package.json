@@ -12,6 +12,7 @@
     "nodemon": "*",
     "passport": "*",
     "passport-local": "*",
-    "passport-facebook": "*"
+    "passport-facebook": "*",
+    "mongoose": "~3.6.4"
   }
 }
