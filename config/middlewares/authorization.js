@@ -15,7 +15,7 @@ exports.userExist = function(req, res, next) {
         if (count === 0) {
             next();
         } else {
-            res.redirect("/singup");
+            res.redirect("/signup");
         }
     });
 }
