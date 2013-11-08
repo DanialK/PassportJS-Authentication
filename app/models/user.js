@@ -13,7 +13,7 @@ UserSchema = mongoose.Schema({
 		email:    String,
 		name:     String
 	},
-	twitter:{
+	google:{
 		id:       String,
 		email:    String,
 		name:     String
@@ -54,30 +54,64 @@ UserSchema.statics.isValidUserPassword = function(email, password, done) {
 	});
 };
 
-
-
-UserSchema.statics.findOrCreateFaceBookUser = function(profile, done){
+// Create a new user given a profile
+UserSchema.statics.findOrCreateOAuthUser = function(profile, done){
 	var User = this;
-	this.findOne({ 'facebook.id' : profile.id }, function(err, user){
+
+	// Build dynamic key query
+	var query = {};
+	query[profile.authOrigin + '.id'] = profile.id;
+
+	// Search for a profile from the given auth origin
+	User.findOne(query, function(err, user){
 		if(err) throw err;
-		// if (err) return done(err);
+
+		// If a user is returned, load the given user
 		if(user){
 			done(null, user);
-		}else{
-			User.create({
-				email : profile.emails[0].value,
-				facebook : {
-					id:    profile.id,
-					email: profile.emails[0].value,
-					name:  profile.displayName
-				}
-			}, function(err, user){
+		} else {
+			// Otherwise, store user, or update information for same e-mail
+			User.findOne({ 'email' : profile.emails[0].value }, function(err, user){
 				if(err) throw err;
-				// if (err) return done(err);
-				done(null, user);
+
+				if(user){
+					// Preexistent e-mail, update
+					user[''+profile.authOrigin] = {};
+					user[''+profile.authOrigin].id = profile.id;
+					user[''+profile.authOrigin].email = profile.emails[0].value;
+					user[''+profile.authOrigin].name = profile.displayName;
+
+					user.save(function(err, user){
+						if(err) throw err;
+						done(null, user);
+					});
+				} else {
+					// New e-mail, create
+					
+					// Fixed fields
+					user = {
+						email : profile.emails[0].value,
+						firstName : profile.displayName.split(" ")[0],
+						lastName : profile.displayName.replace(profile.displayName.split(" ")[0] + " ", "")
+					};
+
+					// Dynamic fields
+					user[''+profile.authOrigin] = {};
+					user[''+profile.authOrigin].id = profile.id;
+					user[''+profile.authOrigin].email = profile.emails[0].value;
+					user[''+profile.authOrigin].name = profile.displayName;
+
+					User.create(
+						user,
+						function(err, user){
+							if(err) throw err;
+							done(null, user);
+						}
+					);
+				}
 			});
 		}
-	});	
+	});
 }
 
 var User = mongoose.model("User", UserSchema);
