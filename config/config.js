@@ -5,9 +5,15 @@ module.exports = {
 			name: 'Passport Authentication Tutorial'
 		},
 		facebook: {
-			clientID: "clientID",
-			clientSecret: "clientSecret",
-			callbackURL: "http://localhost:3000/auth/facebook/callback"
+			clientID: "",
+			clientSecret: "",
+			callbackURL: ""
+		},
+
+		google: {
+			clientID: '',
+			clientSecret: '',
+			callbackURL: ''
 		}
 	},
   	production: {
@@ -16,9 +22,14 @@ module.exports = {
 			name: 'Passport Authentication Tutorial'
 		},
 		facebook: {
-			clientID: "clientID",
-			clientSecret: "clientSecret",
-			callbackURL: "{{production callbackURL}}"
+			clientID: "",
+			clientSecret: "",
+			callbackURL: ""
+		},
+		google: {
+			clientID: '',
+			clientSecret: '',
+			callbackURL: ''
 		}
  	}
 }
