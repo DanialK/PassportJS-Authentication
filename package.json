@@ -1,5 +1,5 @@
 {
-  "name": "Authentication",
+  "name": "PassportJS-Authentication",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -13,7 +13,7 @@
     "passport": "*",
     "passport-local": "*",
     "passport-facebook": "*",
-    "passport-google": "*",
+    "passport-google-oauth": "*",
     "mongoose": "~3.6.4",
     "connect-flash": "*"
   }
