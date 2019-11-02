@@ -14,7 +14,7 @@
     "passport-local": "*",
     "passport-facebook": "*",
     "passport-google-oauth": "*",
-    "mongoose": "~3.6.4",
+    "mongoose": "~5.7.7",
     "connect-flash": "*"
   }
 }
